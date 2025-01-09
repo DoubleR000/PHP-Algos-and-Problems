@@ -4,7 +4,7 @@ function bubbleSort($arr)
 {
     $arrCount = count($arr);
     for ($i = 0; $i < $arrCount - 1; $i++) {
-        for ($j = 0; $j < $arrCount - 1; $j++) {
+        for ($j = 0; $j < $arrCount - $i - 1; $j++) {
             if ($arr[$j] > $arr[$j + 1]) {
                 $temp = $arr[$j];
                 $arr[$j] = $arr[$j + 1];
