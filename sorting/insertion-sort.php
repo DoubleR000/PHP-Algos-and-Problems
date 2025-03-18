@@ -1,22 +1,38 @@
 <?php
 
-function insertionSort($arr)
-{
-    for ($i = 1; $i < count($arr); $i++) {
+// The excessive comments are for my own notes in case I forgot how to write this algorithm.
 
-        $temp = $arr[$i];
+function insertionSort(array $numbers): array
+{
+
+    $size = count($numbers);
+
+    for ($i = 1; $i < $size; $i++) {
+
+        // First, get current number since the number will get overwritten during the shifting
+        $current = $numbers[$i];
+
+        // Keep track of where we are on the previous numbers
         $prev = $i - 1;
 
-        while ($prev >= 0 && $arr[$prev] > $temp) {
-            $arr[$prev + 1] = $arr[$prev];
+        // Shift all numbers greater than current to the right
+        while ($prev >= 0 && $numbers[$prev] > $current) {
+            $numbers[$prev + 1] = $numbers[$prev];
             $prev--;
         }
 
-        $arr[$prev + 1] = $temp;
+        // Then insert the number at the correct spot.
+        // Why add a plus 1? Because $prev will always subtract 1 even after arriving at the correct spot.
+        // Examine the while loop carefully to understand what this means.
+
+        $numbers[$prev + 1] = $current;
     }
 
-    return $arr;
+
+    return $numbers;
 }
 
-$arr = [9, 2, 7, 3, 9, 10, 23, 100, 3, 1, 0, 72, 5, 1000, 2, 3, 6, 32, 56, 13, 62];
-print_r(insertionSort($arr));
+
+$numbers = [9, 8, 1, 3, 20, 7, 2, 5, 9, 4];
+
+print_r(insertionSort($numbers));
